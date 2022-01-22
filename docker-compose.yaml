@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    ports:
+#      - '8080:8080'
+
+  nexus:
+    image: sonatype/nexus3:latest
+    volumes:
+      - "nexus-data:/nexus-data"
+    ports:
+      - "8081:8081"
+      - "10001:10001"
+
+  app_23:
+    image:  127.0.0.1:10001/apptomcat8:0.1
+    ports:
+      - '8082:8080'
+
+volumes:
+  nexus-data: { }
